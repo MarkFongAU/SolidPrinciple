@@ -11,7 +11,11 @@ class Program
             new Square(6)
         };
 
-        var areaCalculator = new AreaCalculator(shapes);
-        Console.WriteLine(areaCalculator.Output());
+        var areas = new AreaCalculator(shapes);
+        Console.WriteLine(areas.Output());
+
+        var output = new SumCalculatorOutputter(areas);
+        Console.WriteLine(output.JSON());
+        Console.WriteLine(output.HTML());
     }
 }

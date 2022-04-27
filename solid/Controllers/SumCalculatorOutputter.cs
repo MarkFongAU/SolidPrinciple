@@ -18,12 +18,13 @@ namespace Solid.Controllers
                 sum = this.calculator.Sum()
             };
 
-            return ""; //JSON..
+            return JsonSerializer.Serialize(data); //JSON..
         }
 
         public string HTML()
         {
-            return "";
+
+            return $"Sum of the areas of provided shapes: {this.calculator.Sum()}";
         }
     }
 }
