@@ -2,11 +2,11 @@ using Solid.Interfaces;
 
 namespace Solid.Models
 {
-    public class Square : IShape, IManageShape
+    public class Cuboid : IShape, IThreeDimensionalShape, IManageShape
     {
         public double length { get; set; }
 
-        public Square(double length)
+        public Cuboid(double length)
         {
             this.length = length;
         }
@@ -14,14 +14,15 @@ namespace Solid.Models
         //Post Open Close principle
         public double Area()
         {
-            return Math.Pow(this.length, 2);
+            return Math.PI * Math.Pow(this.length, 2);
+        }
+
+        public double Volume(){
+            return Math.Pow(this.length, 3);
         }
 
         public double Calculate(){
-            return Area();
+            return this.Area();
         }
     }
 }
-
-
-
