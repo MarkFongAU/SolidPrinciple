@@ -1,4 +1,5 @@
 using Solid.Models;
+using Solid.Interfaces;
 
 namespace Solid.Controllers
 {
@@ -11,7 +12,7 @@ namespace Solid.Controllers
             this.shapes = shapes;
         }
 
-        public double Sum()
+        public virtual double Sum()
         {
             List<double> area = new List<double>();
 
@@ -19,22 +20,31 @@ namespace Solid.Controllers
             {
                 foreach (var shape in shapes)
                 {
-                    //Square
-                    if (shape is Square square)
+                    //Pre Open Close
+                    // if (shape is Square square)
+                    // {
+                    //     area.Add(Math.Pow(square.length, 2));
+                    // }
+                    // else if (shape is Circle circle)
+                    // {
+                    //     area.Add(Math.PI * Math.Pow(circle.radius, 2));
+                    // }
+
+                    //Post Open Close principle
+                    if (shape is IShape localShape)
                     {
-                        area.Add(Math.Pow(square.length, 2));
+                        area.Add(localShape.Area());
+                        continue;
                     }
-                    else if (shape is Circle circle)
-                    {
-                        area.Add(Math.PI * Math.Pow(circle.radius, 2));
-                    }
+
+                    throw new System.Exception();
                 }
             }
 
             return area.Sum();
         }
 
-        public string Output() => $"Sum of the areas of provided shapes: {Sum()}";
+        public virtual string Output() => $"Sum of the areas of provided shapes: {Sum()}";
     }
 }
 
